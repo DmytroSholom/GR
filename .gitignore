@@ -1,0 +1,7 @@
+*.class
+*.classpath
+GRecruiting/.classpath
+# Package Files #
+*.jar
+*.war
+*.ear
