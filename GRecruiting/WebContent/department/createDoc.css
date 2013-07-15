@@ -1,0 +1,29 @@
+div.doc_param {
+	display : table;
+}
+.Trow {
+	display : table-row;
+}
+
+div.field {
+	display : table;
+	background-color : #e1ceb8;
+	margin : 0 auto;
+	
+}
+p.one_param {
+	display : table-cell;
+}
+.Tcell {
+	display : table-cell;
+}
+div.Trow p:last-child{
+	padding : 10px;
+	padding-left : 50px;
+}
+form.Tcell {
+	/*width : 60%;*/
+}
+.div {
+	padding-left : 30%;
+}
