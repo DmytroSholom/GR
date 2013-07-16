@@ -50,9 +50,23 @@
     		if(user!=null){
     			out.flush();
     			request.getRequestDispatcher("/StudentDataController").include(request, response);
-    		}
-    		else{
+    		%>
+    	<%
+				if(request.getParameter("message")!=null &&  !request.getParameter("message").equals("")){
+					if(request.getParameter("message").equals("empty")){%>
+    					<%="Всі поля обов'язкові для заповнення" %>
+    	<%			}else{ 
+    					if(request.getParameter("message").equals("date")){%>
+    						<%="Не вірно вказана дата, потрібний формат: 2000-01-01" %>	
+    			<%		}  %>
+    			<% 		if(request.getParameter("message").equals("succes")){%>
+    						<%="Дані змінено успішно" %>	
+    			<%		}  %>
+    			<%	} 
+				}
+    		} else{
     	%>
+    	
 		<form action="/GRecruiting/RegistrationController" name="student" class="def" enctype="application/x-www-form-urlencoded" method="POST">
 	     <div class="tableRow">
 		<p> Логін: </p>
@@ -97,18 +111,7 @@
 	    </div>
 	    <input type="hidden" name="type" value="STUD">
 	 	<input type="submit" name="action" value="Підтвердити"><P>
-	 	<%
-		if(request.getParameter("message")!=null &&  !request.getParameter("message").equals("")){
-			if(request.getParameter("message").equals("empty")){%>
-    	<%="Всі поля обов'язкові для заповнення" %>
-    	<%	}else 
-    			if(request.getParameter("message").equals("wrongpassword")){%>
-    	<%="Паролі не співпадають" %>	
-    	<%		} %>
-    	<%if(request.getParameter("message").equals("date")){%>
-    	<%="Не вірно вказана дата, потрібний формат: 2000-01-01" %>	
-    	<%		}  %>
-    	<%} %>
+	 	
     	</P>
 	</form>
 	<%}//else %>

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -96,6 +97,16 @@ public class StudentDataController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		if(request.getParameter("accept")!=null && request.getParameter("accept").equals("Підтвердити")){
+			Enumeration<String> names = request.getParameterNames();
+			String currName;
+			while(names.hasMoreElements()){
+				currName = names.nextElement();
+				if(request.getParameter(currName)==null || request.getParameter(currName).equals("")){
+					
+					response.sendRedirect("/GRecruiting/student/personaldata.jsp?message=empty");
+					return;
+				}
+			}
 			UserEntity user = (UserEntity) request.getSession().getAttribute("USER");
 			StudentEntity student = StudentManager.getByUserId(user);
 			String fname = request.getParameter("fname");
@@ -121,7 +132,7 @@ public class StudentDataController extends HttpServlet {
 			student.setEndDate(edate);
 			student.setEmail(email);
 			if(StudentManager.update(student))
-				response.sendRedirect("/GRecruiting/student/personaldata.jsp");
+				response.sendRedirect("/GRecruiting/student/personaldata.jsp?message=succes");
 		}
 	}
 
