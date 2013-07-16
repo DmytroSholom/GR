@@ -30,6 +30,7 @@ public class StudentGroupManager {
 		Transaction t = session.getTransaction();
 		t.begin();
 		StudentGroupEntity group = (StudentGroupEntity)session.createQuery("from StudentGroupEntity where name='"+name+"'").uniqueResult();
+		
 		t.commit();
 		return group;
 	}

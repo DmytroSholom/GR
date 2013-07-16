@@ -53,5 +53,11 @@ public class StudentGroupEntity {
 	public void setStudents(List<StudentEntity> students) {
 		this.students = students;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		StudentGroupEntity gr = (StudentGroupEntity)obj;
+		return this.getGroupID()==gr.getGroupID() && this.getName().equals(gr.getName());
+	}
 	
 }

@@ -28,4 +28,18 @@ public class StudentManager {
 		t.commit();
 		return group;
 	}
+	public static boolean update(StudentEntity student){
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction t = session.getTransaction();
+		try{
+			t.begin();
+			session.update(student);
+			t.commit();
+			return true;
+		}catch(Exception e){
+			t.rollback();
+			return false;
+		}
+		
+	}
 }
