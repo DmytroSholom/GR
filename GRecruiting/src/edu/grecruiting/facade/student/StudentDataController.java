@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import sun.security.acl.GroupImpl;
 
 import edu.grecruiting.model.student.StudentEntity;
 import edu.grecruiting.model.student.StudentGroupEntity;
@@ -35,7 +34,6 @@ public class StudentDataController extends HttpServlet {
      */
     public StudentDataController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
