@@ -83,6 +83,35 @@ public class StudentDataController extends HttpServlet {
 				"<p> <input type=\"submit\" name=\"accept\" value=\"Підтвердити\"> </p>" +
 				"</div>");
         out.append("</form>");
+        //Resume form
+        out.append("<form action=\"/GRecruiting/StudentDataController\" name=\"student\" class=\"def\" method=\"POST\">");
+        out.append("<strong>Заповнити форму для резюме:</strong>");
+        out.append( "<div class=\"tableRow\">" +
+        			"<p> Дата народження: </p>" +
+        			"<p> <input type=\"text\" name=\"addr\" value=\""+student.getFname()+"\"> </p>" +
+        			"</div>");
+        out.append( "<div class=\"tableRow\">" +
+    				"<p> Прізвище: </p>" +
+    				"<p> <input type=\"text\" name=\"lname\" value=\""+student.getLname()+"\"> </p>" +
+    				"</div>");
+       
+        
+        out.append( "<div class=\"tableRow\">" +
+				"<p> Початок навчання: </p>" +
+				"<p> <input type=\"date\" name=\"SDate\" value=\""+student.getStartDate().toString()+"\"> </p>" +
+				"</div>");
+        out.append( "<div class=\"tableRow\">" +
+				"<p> Кінець навчання: </p>" +
+				"<p> <input type=\"date\" name=\"EDate\" value=\""+student.getEndDate().toString()+"\"> </p>" +
+				"</div>");
+        out.append( "<div class=\"tableRow\">" +
+				"<p> E-mail: </p>" +
+				"<p> <input type=\"text\" name=\"email\" value=\""+student.getEmail()+"\"> </p>" +
+				"</div>");
+        out.append( "<div class=\"tableRow\">" +
+				"<p> <input type=\"submit\" name=\"accept\" value=\"Підтвердити\"> </p>" +
+				"</div>");
+        out.append("</form>");
         
        
         
