@@ -12,6 +12,21 @@ import javax.persistence.Table;
 @Entity
 @Table(name="RESUME")
 public class ResumeEntity {
+	public ResumeEntity(int resumeId, String address, Date birthDate,
+			double avrgMark, String foreignLang, String skills,
+			String interests, String wantedPost, String phone) {
+		super();
+		this.resumeId = resumeId;
+		this.address = address;
+		this.birthDate = birthDate;
+		this.avrgMark = avrgMark;
+		this.foreignLang = foreignLang;
+		this.skills = skills;
+		this.interests = interests;
+		this.wantedPost = wantedPost;
+		this.phone = phone;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int resumeId;
@@ -21,8 +36,6 @@ public class ResumeEntity {
 	private Date birthDate;
 	@Column(name="AVRG_MARK")
 	private double avrgMark;
-	@Column(name="EMAIL")
-	private String email;
 	@Column(name="FOREIGN_LANG")
 	private String foreignLang;
 	@Column(name="SKILLS")
@@ -31,25 +44,13 @@ public class ResumeEntity {
 	private String interests;
 	@Column(name="WANTED_POST")
 	private String wantedPost;
+	@Column(name="PHONE")
+	private String phone;
 	
 	public ResumeEntity(){
 		super();
 	}
 	
-	public ResumeEntity(int resumeId, int studId, String address,
-			Date birthDate, double avrgMark, String email, String foreignLang,
-			String skills, String interests, String wantedPost) {
-		super();
-		this.resumeId = resumeId;
-		this.address = address;
-		this.birthDate = birthDate;
-		this.avrgMark = avrgMark;
-		this.email = email;
-		this.foreignLang = foreignLang;
-		this.skills = skills;
-		this.interests = interests;
-		this.wantedPost = wantedPost;
-	}
 	/**
 	 * @return the resumeId
 	 */
@@ -99,18 +100,6 @@ public class ResumeEntity {
 		this.avrgMark = avrgMark;
 	}
 	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	/**
 	 * @return the foreignLang
 	 */
 	public String getForeignLang() {
@@ -157,5 +146,13 @@ public class ResumeEntity {
 	 */
 	public void setWantedPost(String wantedPost) {
 		this.wantedPost = wantedPost;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 }
