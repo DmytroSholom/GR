@@ -18,6 +18,6 @@
         <mapping class="edu.grecruiting.model.resume.ResumeEntity"/>
         <mapping class="edu.grecruiting.model.user.UserEntity" />
         <mapping class="edu.grecruiting.model.company.CompanyEntity"/>
-        <mapping class="edu.grecruiting.model.vacncy.VacancyEntity" />
+        <mapping class="edu.grecruiting.model.vacancy.VacancyEntity" />
     </session-factory>
 </hibernate-configuration>

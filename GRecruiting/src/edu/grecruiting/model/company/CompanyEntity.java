@@ -42,7 +42,7 @@ public class CompanyEntity {
 	@Column(name="WEB")
 	private String web;
 	@OneToMany(targetEntity=edu.grecruiting.model.vacancy.VacancyEntity.class, fetch=FetchType.EAGER)
-	@JoinColumn(name="GROUPID")
+	@JoinColumn(name="COMPANY_ID")
 	List<VacancyEntity> vacancies;
 	
 	public int getId() {
