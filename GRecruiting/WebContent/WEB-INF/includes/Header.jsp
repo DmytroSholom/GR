@@ -4,6 +4,10 @@
 	pageEncoding="utf-8"%>
 <div id="header">
 	<div id="log">
+	<%
+		if(request.getParameter("message")!=null &&  !request.getParameter("message").equals("") && request.getParameter("message").equals("fail")){ %>
+    	<%="Помилка в логіні або паролі"%>
+    	<%} %>
 		<%	UserEntity user = (UserEntity)request.getSession().getAttribute("USER");
 			if(user==null){
 		%>
@@ -20,7 +24,7 @@
 			</div>
 		</form>
 		<%	}else{ %>
-			<%="Hello "+user.getLogin()%>
+			<%="Hello, "+user.getLogin()%>
 			<form name="student" method="post"
 			action="/GRecruiting/LogInOutController">
 			<input type="submit" name="submitLogOut" value="Вийти">	

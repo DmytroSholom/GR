@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import edu.grecruiting.model.student.StudentEntity;
 import edu.grecruiting.model.student.StudentGroupEntity;
 import edu.grecruiting.model.student.StudentGroupManager;
+import edu.grecruiting.model.student.StudentManager;
+import edu.grecruiting.model.user.UserEntityManager;
 
 /**
  * Servlet implementation class SaveS
@@ -41,6 +43,7 @@ public class SaveS extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//StudentManager.addNew(new StudentEntity(1, "f", "n", null, null, 0, 0));
 		StudentGroupEntity group = StudentGroupManager.getById(0);
+		StudentEntity stud	= StudentManager.getByUserId(UserEntityManager.getByLoginPassword("p8", "pass1"));
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
@@ -49,9 +52,7 @@ public class SaveS extends HttpServlet {
             out.println("<title>Первый сервлет</title>");
             out.println("</head>");
             out.println("<body>");
-            for(StudentEntity s: group.getStudents())
-            	if(s.getUserId()!=null)
-            		out.println("<h1>"+s.getUserId().getLogin()+"</h1>");
+            		out.println("<h1>"+stud.getFname()+"</h1>");
             out.println("</body>");
             out.println("</html>");
 

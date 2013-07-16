@@ -46,20 +46,24 @@ public class RegistrationController extends HttpServlet {
 	 */
 	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		if(request.getParameter("type").equals("STUD")){
 			Enumeration<String> names = request.getParameterNames();
 			String currName;
-//			while(names.hasMoreElements()){
-//				currName = names.nextElement();
-//				if(currName==null || currName.equals("")){
-//					//TODO error
-//					response.sendRedirect("/GRecruiting/student/student.jsp");
-//				}
-//			}
-//			if(!request.getParameter("pass").equals(request.getParameter("rpass"))){
-//				//TODO: error
-//				response.sendRedirect("/GRecruiting/student/student.jsp");
-//			}
+			while(names.hasMoreElements()){
+				currName = names.nextElement();
+				if(request.getParameter(currName)==null || request.getParameter(currName).equals("")){
+					
+					response.sendRedirect("/GRecruiting/student/personaldata.jsp?message=empty");
+					return;
+				}
+			}
+			if(!request.getParameter("pass").equals(request.getParameter("rpass"))){
+				//TODO: error
+				response.sendRedirect("/GRecruiting/student/personaldata.jsp?message=wrongpassword");
+				return;
+			}
 			String login = request.getParameter("login");
 			String pass = request.getParameter("pass");
 			String fname = request.getParameter("fname");
@@ -77,15 +81,16 @@ public class RegistrationController extends HttpServlet {
 				sdate = new Date(formater.parse(SDate).getTime());
 				edate = new Date(formater.parse(EDate).getTime());
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				response.sendRedirect("/GRecruiting/student/personaldata.jsp?message=date");
+				return;
 			}
 			UserEntity user = new UserEntity(0, login, pass, request.getParameter("type"));
 			UserEntityManager.addNew(user);
 			StudentGroupEntity sgroup = StudentGroupManager.getByName(group);
 			StudentEntity student = new StudentEntity(0, fname, lname, sdate, edate, sgroup.getGroupID(), null, email, user);
 			StudentManager.addNew(student);
-			response.sendRedirect("/GRecruiting/student/student.jsp");
+			String mess = "succes";
+			response.sendRedirect("/GRecruiting/student/student.jsp?message="+mess);
 		}
 	}
 

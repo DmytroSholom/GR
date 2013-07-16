@@ -45,6 +45,9 @@ public class LogInOutController extends HttpServlet {
 			if(currentUser!=null){
 				HttpSession session = request.getSession(true);
 				session.setAttribute("USER", currentUser);
+			}else{
+				response.sendRedirect("/GRecruiting/student/student.jsp?message=fail");
+				return;
 			}
 		}
 		if(request.getParameter("submitLogOut")!=null){
