@@ -34,5 +34,5 @@
 	</div>
 </div>
 <div id="logo">
-	<a href="index.jsp"><img src="../images/ASU-ua.png"></a>
+	<a href="/GRecruiting/index.jsp"><img src="../images/ASU-ua.png"></a>
 </div>

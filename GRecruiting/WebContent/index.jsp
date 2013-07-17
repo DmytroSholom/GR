@@ -51,8 +51,8 @@
 
       <ul class="glossymenu">
 	  <li class="current"><a href="#"><b>Головна</b></a></li>
-          <li><a href="student.jsp"><b>Студенту</b></a></li>
-          <li><a href="faculty.jsp"><b>Кафедрі</b></a></li>
+          <li><a href="student/student.jsp"><b>Студенту</b></a></li>
+          <li><a href="department/students.jsp"><b>Кафедрі</b></a></li>
           <li><a href="company.jsp"><b>Роботодавцю</b></a></li>
            <li><a href="#"><b>Допомога</b></a></li>
       </ul>
@@ -62,8 +62,8 @@
         <div id="leftcolumn">
 	    <h2>Навігація</h2>
         	<ul id="menu">
-            	    <li><a href="student.jsp"><span>Студенту</span></a></li>
-              	    <li><a href="faculty.jsp"><span>Кафедрі</span></a></li>
+            	    <li><a href="student/student.jsp"><span>Студенту</span></a></li>
+              	    <li><a href="department/students.jsp"><span>Кафедрі</span></a></li>
             	    <li class="last"><a href="company.jsp"><span>Роботодавцю</span></a></li>
         	</ul>
 

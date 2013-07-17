@@ -53,22 +53,17 @@
 
 <!-- body -->
 
-      <ul class="glossymenu">
-	  <li><a href="../index.jsp"><b>Головна</b></a></li>
-          <li><a href="../student.jsp"><b>Студенту</b></a></li>
-          <li><a href="../faculty.jsp"><b>Кафедрі</b></a></li>
-          <li class="current"><a href="../company.jsp"><b>Роботодавцю</b></a></li>
-          <li><a href=""><b>Допомога</b></a></li>
-      </ul>	
+      
+ <jsp:include page="WEB-INF/includes/companyHorizontal.jsp"></jsp:include>
     <div id="container">
       <div id="main">	
     	<div id="leftcolumn">
 	    <h2>Навігація</h2>
         	<ul id="menu">
 	    	    <li><a href="#"><span>Персональні дані</span></a></li>
-            	    <li><a href="cv.jsp"><span>Резюме студентів</span></a></li>
-            	    <li><a href="selection.jsp"><span>Підбір по вакансії</span></a></li>
-            	    <li class="last"><a href="vacancy.jsp"><span>Додати вакансію</span></a></li>
+            	    <li><a href="company/cv.jsp"><span>Резюме студентів</span></a></li>
+            	    <li><a href="company/selection.jsp"><span>Підбір по вакансії</span></a></li>
+            	    <li class="last"><a href="company/vacancy.jsp"><span>Додати вакансію</span></a></li>
             </ul>
 
       	    <div class="contact">

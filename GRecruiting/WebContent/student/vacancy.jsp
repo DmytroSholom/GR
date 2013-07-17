@@ -15,13 +15,8 @@
 
      <jsp:include page="../WEB-INF/includes/Header.jsp"></jsp:include>
      
-      <ul class="glossymenu">
-	  <li><a href="../index.jsp"><b>Головна</b></a></li>
-          <li class="current"><a href="../student.jsp"><b>Студенту</b></a></li>
-          <li><a href="../faculty.jsp"><b>Кафедрі</b></a></li>
-          <li><a href="../company.jsp"><b>Роботодавцю</b></a></li>
-          <li><a href=" "><b>Допомога</b></a></li>
-      </ul>		 
+   
+	<jsp:include page="../WEB-INF/includes/studHorizontal.jsp"></jsp:include>	 
     <div id="container">
       <div id="main">	
     	<div id="leftcolumn">
