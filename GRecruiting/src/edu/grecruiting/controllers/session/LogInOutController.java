@@ -54,14 +54,15 @@ public class LogInOutController extends HttpServlet {
 				session.setAttribute("STUDENT", student);
 				session.setAttribute("GROUP", group);
 			}else{
-				response.sendRedirect("/GRecruiting/student/student.jsp?message=fail");
+				
+				response.sendRedirect("/GRecruiting/index.jsp?message=fail");
 				return;
 			}
 		}
 		if(request.getParameter("submitLogOut")!=null){
 			request.getSession().invalidate();
 		}
-		response.sendRedirect("/GRecruiting/student/student.jsp");
+		response.sendRedirect("/GRecruiting/index.jsp");
 	}
 
 }
