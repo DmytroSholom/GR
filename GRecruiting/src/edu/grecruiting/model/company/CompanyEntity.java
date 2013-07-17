@@ -2,6 +2,7 @@ package edu.grecruiting.model.company;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import edu.grecruiting.model.user.UserEntity;
 import edu.grecruiting.model.vacancy.VacancyEntity;
 
 @Entity
@@ -21,15 +24,20 @@ public class CompanyEntity {
 		super();
 	}
 	public CompanyEntity(int id, String name, String address, String email,
-			String web, List<VacancyEntity> vacancies) {
+			String web, String contname, String compdesc, String phone, List<VacancyEntity> vacancies, UserEntity userId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.email = email;
 		this.web = web;
+		this.contname = contname;
+		this.compdesc = compdesc;
+		this.phone = phone;
 		this.vacancies = vacancies;
+		this.userId = userId;
 	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
@@ -41,9 +49,17 @@ public class CompanyEntity {
 	private String email;
 	@Column(name="WEB")
 	private String web;
+	@Column(name="PERSONA")
+	private String contname;
+	@Column(name="COMPDESC")
+	private String compdesc;
+	@Column(name="PHONE")
+	private String phone;
 	@OneToMany(targetEntity=edu.grecruiting.model.vacancy.VacancyEntity.class, fetch=FetchType.EAGER)
 	@JoinColumn(name="COMPANY_ID")
 	List<VacancyEntity> vacancies;
+	@OneToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private UserEntity userId;
 	
 	public int getId() {
 		return id;
@@ -75,11 +91,35 @@ public class CompanyEntity {
 	public void setWeb(String web) {
 		this.web = web;
 	}
+	public String getContname() {
+		return contname;
+	}
+	public void setContname(String contname) {
+		this.contname = contname;
+	}
+	public String getCompdesc() {
+		return compdesc;
+	}
+	public void setCompdesc(String compdesc) {
+		this.compdesc = compdesc;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public List<VacancyEntity> getVacancies() {
 		return vacancies;
 	}
 	public void setVacancies(List<VacancyEntity> vacancies) {
 		this.vacancies = vacancies;
+	}
+	public UserEntity getUserId() {
+		return userId;
+	}
+	public void setUserId(UserEntity userId) {
+		this.userId = userId;
 	}
 	
 }

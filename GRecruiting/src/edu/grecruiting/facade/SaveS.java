@@ -16,6 +16,7 @@ import edu.grecruiting.model.student.StudentEntity;
 import edu.grecruiting.model.student.StudentGroupEntity;
 import edu.grecruiting.model.student.StudentGroupManager;
 import edu.grecruiting.model.student.StudentManager;
+import edu.grecruiting.model.user.UserEntity;
 import edu.grecruiting.model.user.UserEntityManager;
 import edu.grecruiting.model.vacancy.VacancyEntity;
 import edu.grecruiting.model.vacancy.VacancyManager;
@@ -39,7 +40,9 @@ public class SaveS extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//StudentManager.addNew(new StudentEntity(1, "f", "n", null, null, 0, 0));
-		doPost(request, response);
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(request.getRequestURI());
 	}
 
 	/**
@@ -54,6 +57,8 @@ public class SaveS extends HttpServlet {
         VacancyEntity vacancy = new VacancyEntity(0, "post", 0, "english", 1000, "Java", 2, "Programming", "Information", 81);
         VacancyManager.addNew(vacancy);
         CompanyEntity company = CompanyManager.getById(81);
+
+        company.setUserId(new UserEntity(666, "complog", "1", "COMP"));
         List<VacancyEntity> vacs = company.getVacancies();
 		PrintWriter out = response.getWriter();
         try {
