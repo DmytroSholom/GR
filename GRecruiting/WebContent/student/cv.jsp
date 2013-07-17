@@ -1,8 +1,13 @@
+<%@page import="edu.grecruiting.model.student.StudentGroupEntity"%>
+<%@page import="edu.grecruiting.model.student.StudentGroupManager"%>
+<%@page import="edu.grecruiting.model.student.StudentEntity"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%response.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");%>
 <title>Працевлаштування</title>
 
     <link rel="stylesheet" type="text/css" href="../styles/style.css" />
@@ -13,7 +18,6 @@
   <div id="wrapper">
 
      <jsp:include page="../WEB-INF/includes/Header.jsp"></jsp:include>
-    
 
       <ul class="glossymenu">
 	  <li><a href="../index.jsp"><b>Головна</b></a></li>
@@ -39,46 +43,59 @@
             	    <em>e mail:</em> <a href=" mailto:#?subject=#">address@something.com</a></p>
         	</div> 
    	 </div>
-
+		<%	StudentEntity student = (StudentEntity) session.getAttribute("STUDENT"); 
+			StudentGroupEntity group = (StudentGroupEntity) session.getAttribute("GROUP");
+			if(student!=null && group!=null && student.getResumeID()!=null){
+		%>
     	<div id="rightcolumn">
 			<div class="table">
-            	<div class="tableRow">
-                	<p class="cvLeft">Ім'я:</p>
-                    <p> Сергій Стіренко</p>
+            		<div class="tableRow">
+                    <p class="cvLeftBold">Базова інформація:</p>
+                    <p></p></div>
+                    <div class="tableRow">
+                    <p class="cvLeft">Ім'я, прізвище:</p>
+                    <p><%=student.getFname().trim() +" "+ student.getLname().trim()%><br>
+                    </p></div>
+                    <div class="tableRow">
+                    <p class="cvLeft">Номер телефону:</p>
+                    <p><%=student.getResumeID().getPhone()%><br>
+                    </p></div>
+                    <div class="tableRow">
+                    <p class="cvLeft">Електронна адреса:</p>
+                    <p><%=student.getEmail()%><br></p>
                     </div>
                     <div class="tableRow">
                     <p class="cvLeft"> Домашня адреса:</p>
-                    <p> вул. Жолудєва 8, кв. 7,
-						Київ, 03032, Україна</p></div>
-                    <div class="tableRow">
-                    <p class="cvLeft">Адреса офісу:</p>
+                    <p><%=student.getResumeID().getAddress()%><br></p></div>
+                    <!--  <div class="tableRow">
+                      <p class="cvLeft">Адреса офісу:</p>
                     <p> кафедра обчислювальної техніки Національного технічного університету України "КПІ"<br>
 Проспект Перемоги, 37, Київ - 56, 03056<br>
 +380 (44) 454 90 42<br>
 факс +380 (44) 406 80 13;<br>
 Мобільний телефон +380 (44) 095 504 66 88<br>
-електронна пошта stirenko@yahoo.com, stirenko@yandex.ru</p></div>
+електронна пошта stirenko@yahoo.com, stirenko@yandex.ru</p></div>-->
                     <div class="tableRow">
                     <p class="cvLeft">Дата народження:</p>
-                    <p> 22-го березня 1968</p></div>
-                    <div class="tableRow">
+                    <p><%=student.getResumeID().getBirthDate()%></p></div>
+                   <!-- <div class="tableRow">
                     <p class="cvLeft">Місце народження:</p>
-                    <p>Україна, Вінниця</p></div>
+                    <p>Україна, Вінниця</p></div>-->
                     <div class="tableRow">
                     <p class="cvLeftBold">Освіта:</p>
                     <p></p></div>
                     <div class="tableRow">
-                    <p class="cvLeft">1989-95</p>
-                    <p>Обчислювальної техніки, Національний технічний університет України "КПІ",<br>
- Кафедра, Україна.</p></div>
+                    <p class="cvLeft"><%=student.getStartDate() +" по <br>"+student.getEndDate()%></p>
+                    <p><%=group.getName() %> ФІОТ, Національний технічний університет України "КПІ",<br>
+                    </p></div>
                     <div class="tableRow">
-                    <p class="cvLeft">1995-98</p>
-                    <p>аспірант - лабораторія системного програмування, комп'ютерної інженерії факультет <br>
-Національного технічного університету України "КПІ".</p></div>
-				<div class="tableRow">
-					<p class="cvLeftBold">Зайнятість:</p>
-                    <p></p>
-                </div>
+                    <p class="cvLeft">Середній бал</p>
+                    <p><%=student.getResumeID().getAvrgMark()%><br>
+                    </p></div>
+					<div class="tableRow">
+						<p class="cvLeftBold">Зайнятість:</p>
+                    	<p></p>
+                	</div>
                 <div class="tableRow">
 					<p class="cvLeft">1995-98</p>
                     <p>аспірант - лабораторія системного програмування, комп'ютерної інженерії факультет<br>
@@ -86,10 +103,10 @@
                 </div>
                 <div class="tableRow">
 					<p class="cvLeft">1998-2002</p>
-                    <p>омічник - Комп'ютерна інженерія факультет <br>
+                    <p>помічник - Комп'ютерна інженерія факультет <br>
 Національного технічного університету України "КПІ"</p>
                 </div>
-                <div class="tableRow">
+               <!-- <div class="tableRow">
 					<p class="cvLeftBold">Останні публікації:</p>
                     <p></p>
                 </div>
@@ -99,30 +116,44 @@
  наукової і технічної інформації.
 Двадцять першого тези Міжнародної <br>
 конференції CODATA. Наукова інформація для<br> суспільства - з сьогоднішнього дня в майбутнє, 5-8 жовтня 2008 року, Київ, Україна. P. 103.</p>
-                </div>
+                </div> --> 
                 <div class="tableRow">
-					<p class="cvLeftBold">Освіта - практичні курси по:</p>
+					<p class="cvLeftBold">Бажана посада:</p>
                     <p></p>
                 </div>
                 <div class="tableRow">
-					<p class="cvLeft">1998-2002:</p>
-                    <p>Штучний інтелект будівництво системи з Prolog.</p>
+					<p class="cvLeft"></p>
+                    <p><%=student.getResumeID().getWantedPost() %></p>
                 </div>
                 <div class="tableRow">
-					<p class="cvLeft">1998-2009:</p>
-                    <p>Комп'ютерна логіка.</p>
+					<p class="cvLeftBold">Професійні навички:</p>
+                    <p></p>
+                </div>
+                <div class="tableRow">
+					<p class="cvLeft"></p>
+                    <p><%=student.getResumeID().getSkills().replaceAll("\n", "<br>") %></p>
+                </div>
+                
+                <div class="tableRow">
+					<p class="cvLeftBold">Мови:</p>
+                    <p></p>
+                </div>
+                <div class="tableRow">
+					<p class="cvLeft"></p>
+                    <p><%=student.getResumeID().getForeignLang().replaceAll("\n", "<br>") %></p>
                 </div>
                 <div class="tableRow">
 					<p class="cvLeftBold">Інтереси:</p>
-                    <p>Розробка Grid даних, інтелектуального аналізу даних і                         Grid систем,<br>
-                        Семантичні Grid Supercomputing</p>
+                    <p></p>
                 </div>
                 <div class="tableRow">
-					<p class="cvLeftBold">Мови:</p>
-                    <p>російська (рідна), українська (рідна), англійська (запис і читання технічної документації,<br>
- свобода слова, лекції з інформаційної безпеки для іноземних студентів)</p>
+					<p class="cvLeft"></p>
+                    <p><%=student.getResumeID().getInterests().replaceAll("\n", "<br>") %></p>
                 </div>
             </div>
+            <%} else{%>
+            <H2>Ви не пройшли авторизацію, або не створили резюме.</H2>
+            <%} %>
     	</div>
       </div>
     </div>

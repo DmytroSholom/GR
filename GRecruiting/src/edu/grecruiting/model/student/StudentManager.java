@@ -24,9 +24,9 @@ public class StudentManager {
 		Session session = HibernateUtil.getCurrentSession();
 		Transaction t = session.getTransaction();
 		t.begin();
-		StudentEntity group = (StudentEntity)session.createQuery("from StudentEntity where userId="+user.getId()).uniqueResult();
+		StudentEntity student = (StudentEntity)session.createQuery("from StudentEntity where userId="+user.getId()).uniqueResult();
 		t.commit();
-		return group;
+		return student;
 	}
 	public static boolean update(StudentEntity student){
 		Session session = HibernateUtil.getCurrentSession();
@@ -41,5 +41,12 @@ public class StudentManager {
 			return false;
 		}
 		
+	}
+	public static StudentEntity getById(int id){
+		Session session = HibernateUtil.getCurrentSession();
+		session.beginTransaction();
+		StudentEntity student = (StudentEntity)session.get(StudentEntity.class, id);
+		session.close();
+		return student;
 	}
 }
