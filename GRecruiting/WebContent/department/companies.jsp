@@ -1,3 +1,6 @@
+<%@page import="edu.grecruiting.model.company.CompanyManager"%>
+<%@page import="edu.grecruiting.model.company.CompanyEntity"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -101,24 +104,30 @@
                     </ul>   
                  </td>
              </tr>
-             
+             <%
+             	List<CompanyEntity> companies = CompanyManager.getAll();
+             	for(CompanyEntity c : companies){ %>
  			<tr>
-                <td><%= %></td>
-                <td><%= %></td>
-                <td><%= %></td>
-                <td><%= %></td>
+                <td><%=c.getName() %></td>
+                <td><%=c.getAddress() %></td>
+                <td><%=c.getEmail() %></td>
+                <td><%=c.getContname() %></td>
                 <td><div class="arrow"></div></td>
             </tr>
-	    <tr>
+	   	 	<tr>
                 <td colspan="5">
                     
                     <h4>Additional information</h4>
-                    </%= rs.getString(8) %/> 
+                    <ul>
+                        <li><a href="<%=c.getWeb()%>">WebSite of <%=c.getName()%></a></li>
+                        <li><%=c.getCompdesc() %></li>
+                        <li>Контактний номер: <%=c.getPhone() %></li>
+                    </ul>
+                     
                  </td>
              </tr>
-             </%} con.close();
-             s.close();
-             rs.close();%/>
+             <%} %>
+            
 	</table>
     	</div>
       </div>

@@ -1,7 +1,11 @@
 package edu.grecruiting.model.company;
 
-import org.hibernate.Session;
+import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import edu.grecruiting.model.student.StudentEntity;
 import edu.grecruiting.model.student.StudentGroupEntity;
 import edu.grecruiting.util.HibernateUtil;
 
@@ -24,5 +28,13 @@ public class CompanyManager {
 		CompanyEntity company = (CompanyEntity)session.get(CompanyEntity.class, id);
 		session.close();
 		return company;
+	}
+	public static List<CompanyEntity> getAll(){
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction t = session.getTransaction();
+		t.begin();
+		List<CompanyEntity> companies = session.createQuery("from CompanyEntity").list();
+		t.commit();
+		return companies;
 	}
 }
