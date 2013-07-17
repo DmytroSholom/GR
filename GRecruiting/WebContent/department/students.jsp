@@ -137,7 +137,7 @@
 		 </div>
 		 <%} else{%>
 		<div id="rightcolumn">
-			<form action="" name="showStudents" class="def"  method="POST">
+			<form action="/GRecruiting/StudentController" name="showStudents" class="def"  method="POST">
 				<input type=submit name="show" value="Показати студентів">
 			</form>
 		</div>
