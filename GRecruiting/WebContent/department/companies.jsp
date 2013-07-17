@@ -101,16 +101,12 @@
                     </ul>   
                  </td>
              </tr>
-             </%String[] attr = (String[]) request.getServletContext().getAttribute("attr");
- 			Connection con = DriverManager.getConnection(attr[0], attr[1], attr[2]);
- 			Statement s = con.createStatement();
- 			ResultSet rs = s.executeQuery("SELECT * FROM company"); 
- 			while(rs.next()){%/>
+             
  			<tr>
-                <td></%= rs.getString(2) %/></td>
-                <td></%= rs.getString(3) %/></td>
-                <td></%= rs.getString(4) %/></td>
-                <td></%= rs.getString(5) %/></td>
+                <td><%= %></td>
+                <td><%= %></td>
+                <td><%= %></td>
+                <td><%= %></td>
                 <td><div class="arrow"></div></td>
             </tr>
 	    <tr>

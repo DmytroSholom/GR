@@ -1,5 +1,7 @@
 package edu.grecruiting.model.student;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -48,5 +50,14 @@ public class StudentManager {
 		StudentEntity student = (StudentEntity)session.get(StudentEntity.class, id);
 		session.close();
 		return student;
+	}
+	public static List<StudentEntity> getAll(){
+		Session session = HibernateUtil.getCurrentSession();
+		Transaction t = session.getTransaction();
+		t.begin();
+		List<StudentEntity> studs = session.createQuery("from StudentEntity").list();
+		t.commit();
+		return studs;
+		
 	}
 }

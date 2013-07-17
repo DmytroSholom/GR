@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import edu.grecruiting.model.company.CompanyEntity;
+import edu.grecruiting.model.company.CompanyManager;
 import edu.grecruiting.model.student.StudentEntity;
 import edu.grecruiting.model.student.StudentGroupEntity;
 import edu.grecruiting.model.student.StudentGroupManager;
@@ -121,10 +122,14 @@ public class RegistrationController extends HttpServlet {
 			String phone = request.getParameter("phone");
 			String email = request.getParameter("email");
 			UserEntity user = new UserEntity(0, login, pass, request.getParameter("type"));
-			UserEntityManager.addNew(user);
-			CompanyEntity company = new CompanyEntity(0, compname, address, email, web, contname, compdesc, phone, null, user);
-			String mess = "succes";
-			response.sendRedirect("/GRecruiting/company.jsp?message="+mess);
+			
+			if(UserEntityManager.addNew(user)){
+				CompanyEntity company = new CompanyEntity(0, compname, address, email, web, contname, compdesc, phone, null, user);
+				if(CompanyManager.addNew(company)){
+					String mess = "succes";
+					response.sendRedirect("/GRecruiting/company.jsp?message="+mess);
+				}
+			}
 		}
 	}
 

@@ -47,12 +47,15 @@ public class LogInOutController extends HttpServlet {
 			String pass = request.getParameter("pass");
 			UserEntity currentUser = UserEntityManager.getByLoginPassword(login, pass);
 			if(currentUser!=null){
-				StudentEntity student = StudentManager.getByUserId(currentUser);
-				StudentGroupEntity group = StudentGroupManager.getById(student.getGroupID());
 				HttpSession session = request.getSession(true);
 				session.setAttribute("USER", currentUser);
-				session.setAttribute("STUDENT", student);
-				session.setAttribute("GROUP", group);
+				if(currentUser.getType().equalsIgnoreCase("STUD")){
+					StudentEntity student = StudentManager.getByUserId(currentUser);
+					StudentGroupEntity group = StudentGroupManager.getById(student.getGroupID());
+					
+					session.setAttribute("STUDENT", student);
+					session.setAttribute("GROUP", group);
+				}
 			}else{
 				
 				response.sendRedirect("/GRecruiting/index.jsp?message=fail");
