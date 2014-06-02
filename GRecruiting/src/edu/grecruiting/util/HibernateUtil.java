@@ -15,7 +15,7 @@ private static final SessionFactory sessionFactory;
 		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(config.getProperties()).buildServiceRegistry();
 		sessionFactory = config.buildSessionFactory(serviceRegistry);
 	}
-	
+	//blabal
 	public static Session getCurrentSession(){
 		return sessionFactory.getCurrentSession();
 	}
